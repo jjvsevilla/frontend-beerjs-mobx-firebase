@@ -5,7 +5,6 @@ import chelas from '../data/chelas';
 class ChelasStore {
   @observable filter = '';
   @observable list = [];
-  @observable order = [];
 
   constructor() {
     Object.keys(chelas).forEach((chelaKey) => {

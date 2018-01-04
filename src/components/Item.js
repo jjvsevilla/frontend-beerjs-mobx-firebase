@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import { formatPrice } from '../utils/formatter';
 
 const Card = styled.figure`
   display: inline-block;
   width: 100%;
-  margin: 0 0 2rem 0;
+  margin: 0;
   padding: 0;
   border: 1px solid #d3d3d3;
   background: #fff;
-  box-shadow: 0 0 0 5px rgba(0,0,0,0.03);
 `;
 
 const ImageWrapper = styled.div`
@@ -22,7 +22,7 @@ const ImageWrapper = styled.div`
 `;
 
 const CardCaption = styled.figcaption`
-  margin: 0 2rem 2rem;
+  margin: 0 1rem 1rem;
 `;
 
 const CardActions = styled.div`
@@ -56,6 +56,7 @@ class Item extends Component {
   onAddToOrder = () => {
     const { OrderStore, chela } = this.props;
     OrderStore.addToOrder(chela);
+    chela.runShopAnimation()
   }
 
   render () {
@@ -71,6 +72,13 @@ class Item extends Component {
           >
             <span key={chela.likes} className="likes-animation">{chela.likes}</span>
           </CSSTransitionGroup>
+          <CSSTransitionGroup
+            transitionName="shop"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
+          >
+            <span key={chela.animationId} className="shop-animation"></span>
+          </CSSTransitionGroup>
         </ImageWrapper>
         <CardCaption>
           <p>{chela.name}</p>
@@ -79,7 +87,7 @@ class Item extends Component {
               <span role="img" aria-label="beer">🍺 {chela.likes}</span>
             </CardButton>
             <CardButton onClick={this.onAddToOrder}>
-              <span role="img" aria-label="comments">💰 {chela.price}</span>
+              <span role="img" aria-label="comments">🛒 {formatPrice(chela.price)}</span>
             </CardButton>
           </CardActions>
         </CardCaption>

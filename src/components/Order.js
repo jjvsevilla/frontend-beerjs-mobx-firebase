@@ -1,59 +1,40 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
+import OrderItem from './OrderItem';
+import OrderFooter from './OrderFooter';
 
-const TotalLabel = styled.p`
-  font-family: 'Seymour One',sans-serif;
-`
-
-const Total = styled.p`
-  text-align: right;
-  font-family: 'Seymour One',sans-serif;
-`
-
-const OrderList = styled.ul`
-  list-style: none;
-  padding: 0;
-
-  li {
-    display: flex;
-    justify-content: space-between;
+const OrderContainer = styled.div`
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 `
 
-const Name = styled.span`
-`
-
-const Price = styled.span`
+const OrderHeader = styled.p`
   font-family: 'Seymour One',sans-serif;
+  text-align: center;
 `
 
 class Order extends Component {
-
-  renderOrder = (key) => {
-    const { ChelasStore, OrderStore } = this.props;
-    const chela = ChelasStore.getChela(key);
-    const count = OrderStore.order[key];
-    return (
-      <li key={key}>
-        <Name>{count} {chela.name}</Name>
-        <Price>{chela.price}</Price>
-      </li>
-    )
-  }
-
   render() {
     const { OrderStore } = this.props;
-    const orderKeys = Object.keys(OrderStore.order);
-
     return (
-      <div>
-        <TotalLabel>Tu Orden:</TotalLabel>
-        <OrderList>
-          {orderKeys.map(this.renderOrder)}
-        </OrderList>
-        <Total>{OrderStore.total}</Total>
-      </div>
+      <OrderContainer>
+        <OrderHeader>Tu Orden</OrderHeader>
+        <CSSTransitionGroup
+          component="ul"
+          className="order-item"
+          transitionName="order-item"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
+        >
+          {OrderStore.order.map(chelaOrder => <OrderItem key={chelaOrder.id} chelaOrder={chelaOrder} />)}
+        </CSSTransitionGroup>
+        <OrderFooter />
+      </OrderContainer>
     )
   }
 }

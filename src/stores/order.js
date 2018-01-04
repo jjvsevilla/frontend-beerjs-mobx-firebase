@@ -1,29 +1,27 @@
 import { observable, computed, action, autorun, toJS } from 'mobx';
-import Chela from '../models/chela';
+import ChelaOrder from '../models/chelaOrder';
 import ChelasStore from './chela';
 
 class OrderStore {
-  @observable order = {};
+  @observable order = [];
 
-  // constructor() {
-  //   autorun(() => {
-  //     console.log(toJS(this.order))
-  //   })
-  // }
 
   @action addToOrder({ id }) {
-    const order = {...this.order}
-    order[id] = order[id] + 1 || 1;
-    this.order = order;
+    const chelaOrder = this.order.find(chelaOrder => chelaOrder.id === id);
+    if (chelaOrder) {
+      chelaOrder.increase();
+    } else {
+      const chela = ChelasStore.getChela(id);
+      this.order.push(new ChelaOrder(id, chela.name, 1, chela.price));
+    }
   }
 
   @computed get total() {
-    const total = Object.keys(this.order).reduce((acc, cur) => {
-      const chela = ChelasStore.getChela(cur);
-      const count = this.order[cur];
-      return acc + (count * chela.price || 0)
+    const total = this.order.reduce((acc, cur) => {
+      return acc + (cur.amount * cur.price)
     }, 0);
     return total;
+
   }
 }
 

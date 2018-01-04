@@ -15,7 +15,7 @@ const chelas = {
     "name":"Cusqueña 😎🍺",
     "likes":16,
     "image":"http://4.bp.blogspot.com/-74OAB62-bcs/T_DXZlpr7pI/AAAAAAAAAL0/Jebb4tESd-I/s1600/cerve_03.jpg",
-    "price":12
+    "price":12.5
   },
   "peroni":{
     "name":"Peroni 😏🍾",
@@ -27,7 +27,7 @@ const chelas = {
     "name":"Corona 😉🍺🍺🍺🍺😏",
     "likes":10,
     "image":"http://www.roastbrief.com.mx/wp-content/uploads/2016/08/Día-Mundial-de-la-Cerveza-06.jpg",
-    "price":16
+    "price":16.5
   },
   "stella-artois":{
     "name":"Stella Artois 🍾",
@@ -45,7 +45,7 @@ const chelas = {
     "name":"Heineken 😎🍾🍾",
     "likes":9,
     "image":"http://e04-expansion.uecdn.es/assets/multimedia/imagenes/2017/02/15/14871506878322.jpg",
-    "price":18
+    "price":18.5
   },
   "duvel":{
     "name":"Duvel 😏🍸",
@@ -57,7 +57,7 @@ const chelas = {
     "name":"Estrella Damm 😉",
     "likes":1,
     "image":"http://makuirabeerspa.com/268-large_default/cerveza-estrella-damm-barcelona.jpg",
-    "price":17
+    "price":17.5
   },
   "lowenbrau":{
     "name":"Lowenbrau 😁🍺",

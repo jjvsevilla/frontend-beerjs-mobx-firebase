@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
-import { action } from 'mobx';
 import styled from 'styled-components';
 import Item from './Item';
 import Order from './Order';
@@ -15,27 +14,15 @@ const GridWrapper = styled.div`
 const OrderWrapper = styled.div`
   width: calc(300px - 1rem);
   margin: 0;
+  overflow: hidden;
 `
 
-const ItemWrapper = styled.div`
+const ItemsWrapper = styled.div`
   width: calc(700px - 1rem);
   margin: 0;
   column-count: 3;
-  column-gap: 2rem;
-
-  &:hover {
-    figure {
-      opacity: 0.3;
-    }
-  }
-
-  figure {
-    transition: .8s opacity;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
+  column-gap: 0;
+  overflow: hidden;
 `;
 
 class Grid extends Component {
@@ -43,9 +30,9 @@ class Grid extends Component {
     const { ChelasStore } = this.props;
     return(
       <GridWrapper>
-        <ItemWrapper>
+        <ItemsWrapper>
           {ChelasStore.filteredList.map((chela) => <Item key={chela.id} chela={chela} />)}
-        </ItemWrapper>
+        </ItemsWrapper>
         <OrderWrapper>
           <Order />
         </OrderWrapper>

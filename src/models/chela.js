@@ -5,6 +5,7 @@ class Chela {
   name;
   @observable likes;
   image;
+  @observable animationId;
   price;
 
   constructor(id, name, likes, image, price) {
@@ -21,6 +22,10 @@ class Chela {
 
   @action increase() {
     this.setLikes(this.likes + 1)
+  }
+
+  @action runShopAnimation() {
+    this.animationId = Date.now();
   }
 }
 

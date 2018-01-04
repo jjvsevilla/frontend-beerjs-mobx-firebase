@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
 import Grid from './Grid';
 import NoMatch from './NoMatch';
 
