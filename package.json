@@ -2,6 +2,7 @@
   "name": "frontend-beerjs-mobx-firebase",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jjvsevilla.github.io/frontend-meetup-january/",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
