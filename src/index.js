@@ -142,9 +142,11 @@ injectGlobal`
   }
 `;
 
+const repo = `/${window.location.pathname.split('/')[1]}`;
+
 ReactDOM.render(
   <Provider {...store}>
-    <HashRouter>
+    <HashRouter basename={repo}>
       <App />
     </HashRouter>
   </Provider>
