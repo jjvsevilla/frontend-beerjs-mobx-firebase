@@ -36,7 +36,7 @@ injectGlobal`
       font-family: sans-serif;
 
       .likes-animation {
-        background: url(https://emojipedia-us.s3.amazonaws.com/thumbs/120/microsoft/106/clinking-beer-mugs_1f37b.png) center no-repeat;
+        background: url(https://emojipedia-us.s3.amazonaws.com/thumbs/160/microsoft/74/clinking-beer-mugs_1f37b.png) center no-repeat;
         background-size: contain;
         font-size: 1.2rem;
         padding: 1rem;

@@ -14,10 +14,6 @@ const spin = keyframes`
 const OuterHeader = styled.div`
   width: 100%;
   height: 200px;
-  margin-bottom: 2rem;
-  background: #222222;
-  height: 200px;
-  margin-bottom: 2rem;
   background: #222222;
 `
 

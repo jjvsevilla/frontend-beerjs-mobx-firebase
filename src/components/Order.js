@@ -16,6 +16,7 @@ const OrderContainer = styled.div`
 const OrderHeader = styled.p`
   font-family: 'Seymour One',sans-serif;
   text-align: center;
+  margin-top: 0;
 `
 
 class Order extends Component {

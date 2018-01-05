@@ -4,47 +4,79 @@ import styled from 'styled-components';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { formatPrice } from '../utils/formatter';
 
-const Card = styled.figure`
-  display: inline-block;
+const Card = styled.li`
+  display: flex;
   width: 100%;
   margin: 0;
   padding: 0;
   border: 1px solid #d3d3d3;
   background: #fff;
+  position: relative;
+  border-radius: 0 5px 5px 0;
+  margin-bottom: 0.5rem;
 `;
 
-const ImageWrapper = styled.div`
+const CardImage = styled.div`
   position: relative;
+  max-width: 40%;
+  height: 150px;
 
   img {
+    height: 100%;
     width: 100%;
   }
 `;
 
-const CardCaption = styled.figcaption`
-  margin: 0 1rem 1rem;
+const CardStacked = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+`;
+
+const CardContent = styled.div`
+  flex-grow: 1;
+  padding: 24px;
+
+  p {
+    margin: 0
+  }
 `;
 
 const CardActions = styled.div`
+  position: relative;
+  border-top: 1px solid rgba(160,160,160,0.2);
+  padding: 16px 24px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+
+  .like {
+    cursor: pointer;
+  }
 `;
 
 const CardButton = styled.button`
   border: 2px solid #f2f2f2;
   background: none;
-  flex-basis: 48%;
+  flex-basis: 40%;
   display: inline-block;
   line-height: 2;
   text-decoration: none;
   padding: 5px;
   text-align: center;
-  color: #125688;
   transition: all 0.2s;
-  box-sizing: border-box;
+  cursor: pointer;
+  outline: none;
 
-  &.likes {
-    cursor: pointer;
+  span {
+    color: #263238;
+    transition: color .3s ease;
+  }
+
+  &:hover {
+    span {
+      color: #90a4ae;
+    }
   }
 `;
 
@@ -63,7 +95,7 @@ class Item extends Component {
     const { chela } = this.props;
     return (
       <Card>
-        <ImageWrapper>
+        <CardImage>
           <img src={chela.image} alt={chela.name} />
           <CSSTransitionGroup
             transitionName="like"
@@ -79,18 +111,20 @@ class Item extends Component {
           >
             <span key={chela.animationId} className="shop-animation"></span>
           </CSSTransitionGroup>
-        </ImageWrapper>
-        <CardCaption>
-          <p>{chela.name}</p>
+        </CardImage>
+        <CardStacked>
+          <CardContent>
+            <p>{chela.name}</p>
+          </CardContent>
           <CardActions>
-            <CardButton onClick={this.onLikeBeer}>
+            <CardButton onClick={this.onLikeBeer} className="like">
               <span role="img" aria-label="beer">🍺 {chela.likes}</span>
             </CardButton>
             <CardButton onClick={this.onAddToOrder}>
               <span role="img" aria-label="comments">🛒 {formatPrice(chela.price)}</span>
             </CardButton>
           </CardActions>
-        </CardCaption>
+        </CardStacked>
       </Card>
     )
   }
