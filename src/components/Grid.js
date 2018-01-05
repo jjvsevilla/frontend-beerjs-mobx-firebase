@@ -17,8 +17,6 @@ const ItemsWrapper = styled.div`
   margin: 0;
   padding: 0;
   overflow-y: scroll;
-  border: 1px solid #d3d3d3;
-  border-radius: 0 10px 10px 0;
 
   ::-webkit-scrollbar {
     width: 12px;
