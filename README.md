@@ -1,5 +1,5 @@
 ## Live demo
-[frontend-beerjs-mobx](https://jjvsevilla.github.io/frontend-meetup-january/)
+[frontend-meetup-january](https://jjvsevilla.github.io/frontend-meetup-january/)
 
 This project was created with [Create React App](https://github.com/facebookincubator/create-react-app). Also, it uses [MobX](https://github.com/mobxjs/mobx) for state management.
 
