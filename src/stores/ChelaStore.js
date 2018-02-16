@@ -1,15 +1,16 @@
 import { observable, computed, action } from 'mobx';
-import Chela from '../models/chela';
+import ChelaItem from '../models/chelaItem';
 import chelas from '../data/chelas';
 
-class ChelasStore {
+class ChelaStore {
   @observable filter = '';
   @observable list = [];
 
-  constructor() {
+  constructor(rootStore) {
+    this.rootStore = rootStore
     Object.keys(chelas).forEach((chelaKey) => {
       const { name, likes, image, price } = chelas[chelaKey];
-      this.list.push(new Chela(chelaKey, name, likes, image, price))
+      this.list.push(new ChelaItem(chelaKey, name, likes, image, price))
     });
   }
 
@@ -27,4 +28,4 @@ class ChelasStore {
   }
 }
 
-export default new ChelasStore();
+export default ChelaStore

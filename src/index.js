@@ -1,18 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { injectGlobal } from 'styled-components';
-import { HashRouter } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { useStrict } from 'mobx';
-
 import App from './components/App';
-import ChelasStore from './stores/chela';
-import OrderStore from './stores/order';
+import RootStore from './stores/RootStore';
 
-const store = {
-  ChelasStore,
-  OrderStore
-}
+const store = new RootStore()
 window.store = store;
 
 useStrict(true);
@@ -142,12 +136,8 @@ injectGlobal`
   }
 `;
 
-const repo = `/${window.location.pathname.split('/')[1]}`;
-
 ReactDOM.render(
   <Provider {...store}>
-    <HashRouter basename={repo}>
-      <App />
-    </HashRouter>
+    <App />
   </Provider>
 , document.getElementById('root'));

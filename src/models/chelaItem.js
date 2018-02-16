@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 
-class Chela {
+class ChelaItem {
   id;
   name;
   @observable likes;
@@ -29,4 +29,4 @@ class Chela {
   }
 }
 
-export default Chela
+export default ChelaItem

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
@@ -28,28 +28,23 @@ const Price = styled.span`
   font-family: 'Seymour One',sans-serif;
 `
 
-class OrderFooter extends Component {
-  render() {
-    const { OrderStore } = this.props;
-    return (
-      <OrderFooterWrapper>
-      <span>Total:</span>
-      <span>
-        <CSSTransitionGroup
-          component="span"
-          className="count"
-          transitionName="count"
-          transitionEnterTimeout={125}
-          transitionLeaveTimeout={125}
-        >
-          <Price key={OrderStore.total}>
-            {formatPrice(OrderStore.total)}
-          </Price>
-        </CSSTransitionGroup>
-      </span>
-    </OrderFooterWrapper>
-    )
-  }
-}
+const OrderFooter = ({ OrderStore }) => (
+  <OrderFooterWrapper>
+    <span>Total:</span>
+    <span>
+      <CSSTransitionGroup
+        component="span"
+        className="count"
+        transitionName="count"
+        transitionEnterTimeout={125}
+        transitionLeaveTimeout={125}
+      >
+        <Price key={OrderStore.total}>
+          {formatPrice(OrderStore.total)}
+        </Price>
+      </CSSTransitionGroup>
+    </span>
+  </OrderFooterWrapper>
+)
 
 export default inject('OrderStore')(observer(OrderFooter));

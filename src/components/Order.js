@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
@@ -19,25 +19,20 @@ const OrderHeader = styled.p`
   margin-top: 0;
 `
 
-class Order extends Component {
-  render() {
-    const { OrderStore } = this.props;
-    return (
-      <OrderContainer>
-        <OrderHeader>Tu Orden</OrderHeader>
-        <CSSTransitionGroup
-          component="ul"
-          className="order-item"
-          transitionName="order-item"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
-        >
-          {OrderStore.order.map(chelaOrder => <OrderItem key={chelaOrder.id} chelaOrder={chelaOrder} />)}
-        </CSSTransitionGroup>
-        <OrderFooter />
-      </OrderContainer>
-    )
-  }
-}
+const Order = ({ OrderStore }) => (
+  <OrderContainer>
+    <OrderHeader>Tu Orden</OrderHeader>
+    <CSSTransitionGroup
+      component="ul"
+      className="order-item"
+      transitionName="order-item"
+      transitionEnterTimeout={500}
+      transitionLeaveTimeout={500}
+    >
+      {OrderStore.order.map(chelaOrder => <OrderItem key={chelaOrder.id} chelaOrder={chelaOrder} />)}
+    </CSSTransitionGroup>
+    <OrderFooter />
+  </OrderContainer>
+)
 
-export default inject('ChelasStore', 'OrderStore')(observer(Order));
+export default inject('OrderStore')(observer(Order));

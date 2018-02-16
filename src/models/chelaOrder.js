@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 
-class chelaOrder {
+class ChelaOrder {
   id;
   name;
   @observable amount;
@@ -22,4 +22,4 @@ class chelaOrder {
   }
 }
 
-export default chelaOrder
+export default ChelaOrder

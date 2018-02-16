@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
 import Item from './Item';
@@ -50,22 +50,17 @@ const OrderWrapper = styled.div`
   overflow: hidden;
 `
 
-class Grid extends Component {
-  render() {
-    const { ChelasStore } = this.props;
-    return(
-      <GridWrapper>
-        <ItemsWrapper>
-          <ItemList>
-          {ChelasStore.filteredList.map((chela) => <Item key={chela.id} chela={chela} />)}
-          </ItemList>
-        </ItemsWrapper>
-        <OrderWrapper>
-          <Order />
-        </OrderWrapper>
-      </GridWrapper>
-    )
-  }
-}
+const Grid = ({ ChelaStore }) => (
+  <GridWrapper>
+    <ItemsWrapper>
+      <ItemList>
+      {ChelaStore.filteredList.map((chela) => <Item key={chela.id} chela={chela} />)}
+      </ItemList>
+    </ItemsWrapper>
+    <OrderWrapper>
+      <Order />
+    </OrderWrapper>
+  </GridWrapper>
+)
 
-export default inject('ChelasStore')(observer(Grid));
+export default inject('ChelaStore')(observer(Grid));

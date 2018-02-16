@@ -1,17 +1,19 @@
 import { observable, computed, action } from 'mobx';
 import ChelaOrder from '../models/chelaOrder';
-import ChelasStore from './chela';
 
 class OrderStore {
   @observable order = [];
 
+  constructor(rootStore) {
+    this.rootStore = rootStore
+  }
 
   @action addToOrder({ id }) {
     const chelaOrder = this.order.find(chelaOrder => chelaOrder.id === id);
     if (chelaOrder) {
       chelaOrder.increase();
     } else {
-      const chela = ChelasStore.getChela(id);
+      const chela = this.rootStore.ChelaStore.getChela(id);
       this.order.push(new ChelaOrder(id, chela.name, 1, chela.price));
     }
   }
@@ -21,8 +23,7 @@ class OrderStore {
       return acc + (cur.amount * cur.price)
     }, 0);
     return total;
-
   }
 }
 
-export default new OrderStore();
+export default OrderStore

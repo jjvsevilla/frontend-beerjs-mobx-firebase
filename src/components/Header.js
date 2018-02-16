@@ -23,11 +23,15 @@ const LayoutHeader = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
-  text-decoration: none;
+  min-width: 900px;
+  width: 900px;
+  margin: 0 calc(calc(100% - 900px)/2);
+  padding: 0;
 `
 
 const Logo = styled.img`
   height: ${props => props.height || '60%'};
+  flex-basis: ${props => props.basis || '200px'};
   animation: ${spin} infinite 2s linear;
 `
 
@@ -36,6 +40,7 @@ const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-basis: 500px;
 `
 
 const Title = styled.div`
@@ -70,7 +75,7 @@ const Subtitle = styled.div`
   display: block;
   color: #fff;
   font-family: 'Seymour One', sans-serif;
-  font-size: 2.5rem;
+  font-size: 2rem;
 `
 
 const FilterWrapper = styled.div`
@@ -80,7 +85,7 @@ const FilterWrapper = styled.div`
 
   input {
     font-family: 'Seymour One', sans-serif;
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     width: 100%;
   }
 `
@@ -92,30 +97,30 @@ class Header extends Component {
   @action
   handleFilter = (e) => {
     const { value } = e.target;
-    this.props.ChelasStore.updateFilter(value);
+    this.props.ChelaStore.updateFilter(value);
   }
 
   render() {
-    const { title = 'React!', subtitle = '', ChelasStore } = this.props;
+    const { title = 'React!', subtitle = '', ChelaStore } = this.props;
     const spans = formattedText(title);
     return (
       <OuterHeader>
         <LayoutHeader>
-          <Logo src={`${process.env.PUBLIC_URL}/BeerJS.png`} alt={title} />
+          <Logo src={`${process.env.PUBLIC_URL}/BeerJS.png`} alt={title} height="70%" basis="150px" />
           <Content>
             <Title dangerouslySetInnerHTML={{__html: spans}}></Title>
             <Subtitle>{subtitle}</Subtitle>
             <FilterWrapper>
               <input name="filter" type="text" placeholder="busca tu chelita"
-                value={ChelasStore.filter}
+                value={ChelaStore.filter}
                 onChange={this.handleFilter} />
             </FilterWrapper>
           </Content>
-          <Logo src={`${process.env.PUBLIC_URL}/mobx.svg`} alt={title} height="40%" />
+          <Logo src={`${process.env.PUBLIC_URL}/mobx.svg`} alt={title} height="60%" />
         </LayoutHeader>
       </OuterHeader>
     )
   }
 }
 
-export default inject('ChelasStore')(observer(Header));
+export default inject('ChelaStore')(observer(Header));
